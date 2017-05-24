@@ -45,3 +45,6 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+/EjemploJunit/nbproject/private/
+/EjemploJunit/build/
+/Maven/EjemploMaven2/target/
