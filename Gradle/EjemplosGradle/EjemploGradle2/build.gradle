@@ -1,0 +1,25 @@
+task primeraTarea{
+	ext.edad = 21
+	ext{
+		nombre = "Juan Diego"
+		correo = "juandiego960304@gmail.com"
+		version = "1.0"
+	}
+
+	doLast {
+		println "Compilo la versión " + version
+	}
+}
+
+task leerInformacion {
+	doLast {
+		println "Compilo la versión " + primeraTarea.version
+	}
+	println "Leyendo información registrada "
+	println "Nombre: " +primeraTarea.nombre
+	println "Correo: "+ primeraTarea.correo
+	println "Edad: " + primeraTarea.edad 
+}
+
+
+

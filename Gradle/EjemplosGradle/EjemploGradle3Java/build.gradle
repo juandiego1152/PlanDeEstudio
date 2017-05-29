@@ -1,0 +1,15 @@
+apply plugin: 'java'
+
+apply plugin: "application"
+
+sourceCompatibility = "1.7"
+
+version= "1.0"
+
+mainClassName = "ejemploJava"
+
+jar{
+	manifest {
+		attributes "Main-Class": "ejemploJava"
+	}
+}

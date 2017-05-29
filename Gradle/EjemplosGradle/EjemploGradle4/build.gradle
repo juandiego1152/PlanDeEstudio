@@ -1,0 +1,18 @@
+task a <<{
+	println "Estoy ejecuntando la tarea A "
+}
+
+task b {
+
+	dependsOn "a"
+
+	doLast {
+		println "Estoy ejecuntando la tarea B "
+	}
+
+	
+}
+
+task c(dependsOn: 'b') {
+	println "Estoy ejecuntando la tarea C "
+}

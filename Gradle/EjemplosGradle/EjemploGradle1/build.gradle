@@ -1,0 +1,16 @@
+task compilar  << {
+	println 'Estoy compilando'
+}
+
+task pruebasUnitarias <<{
+	println "Estoy lanzando  pruebas Unitarias"
+}
+
+task informacion <<{
+	String nombre = "Juan Diego"
+	String apellido = "Londoño Zapata";
+	int edad = 21;
+	println "Yo soy "+nombre+" "+apellido+" y tengo "+edad+" años de edad."
+
+}
+
