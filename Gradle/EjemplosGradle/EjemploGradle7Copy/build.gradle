@@ -1,0 +1,37 @@
+
+task crearDisco{
+	new File("dist").mkdirs()
+}
+
+task copiar(type: Copy, dependsOn: crearDisco){
+	from "tools"
+	into "dist"
+
+	include "*.txt"
+}
+
+
+task crearDisco2{
+	new File("dist2").mkdirs()
+}
+
+task copiar2(type: Copy, dependsOn: crearDisco2){
+	from "tools"
+	into "dist2"
+
+	exclude "*.sh"
+	exclude "*.bat"
+}
+
+
+task ejecutar(type:Exec, dependsOn: copiar){
+	//commandLine 'less',"-b"
+	//commandLine 'more',"-b"
+	//commandLine 'nano',"-b"
+	commandLine 'cat',"-b"
+
+	//standardOutput = new FileOutputStream("dist/salida.txt");
+
+	standardInput = new FileInputStream("dist2/readme.txt");
+
+}

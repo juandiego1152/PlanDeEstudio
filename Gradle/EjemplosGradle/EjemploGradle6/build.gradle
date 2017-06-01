@@ -1,0 +1,24 @@
+task compilar{
+	doLast{
+		println "compilando el proyecto"
+	}
+}
+
+task distribuir{
+
+	onlyIf{
+		compilar.didWork
+
+		new File("configuración.xml").exists()
+
+	}
+	doLast{
+		println "distribuyendo el proyecto"
+	}
+}
+
+
+
+task comprimir << {
+	
+}

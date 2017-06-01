@@ -1,0 +1,41 @@
+task holaMundo{
+
+	doFirst{
+		println "Estoy haciendo el doFirst"
+	}
+
+	doLast{
+		println	"Estoy haciendo un doLast"
+	}
+}
+
+task holaMundo2(dependsOn: holaMundo){
+
+	doFirst{
+		println "Estoy haciendo el doFirst 2"
+	}
+
+	doLast{
+		println	"Estoy haciendo un doLast 2"
+	}
+}
+
+
+
+task a << {
+	println "Tarea A"
+}	
+
+task b << {
+	println "Tarea B"
+}
+
+task c << {
+	println "Tarea B"
+}
+
+
+b.mustRunAfter a
+
+
+b.finalizedBy c

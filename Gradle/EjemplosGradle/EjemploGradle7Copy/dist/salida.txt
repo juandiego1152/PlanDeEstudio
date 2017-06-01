@@ -1,0 +1,4 @@
+total 0
+-rw-r--r-- 1 Juan Diego Pro 197121 0 May 31 22:15 salida.txt
+-rw-r--r-- 1 Juan Diego Pro 197121 0 May 31 21:08 readme.txt
+-rw-r--r-- 1 Juan Diego Pro 197121 0 May 31 21:08 license.txt
