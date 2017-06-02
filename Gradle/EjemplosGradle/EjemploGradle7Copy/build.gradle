@@ -3,6 +3,8 @@ task crearDisco{
 	new File("dist").mkdirs()
 }
 
+
+//TAREA INCLUDE, INCLUYE EN LA COPIA LOS ARCHIVOS QUE CUMPLAN LA CONDICION
 task copiar(type: Copy, dependsOn: crearDisco){
 	from "tools"
 	into "dist"
@@ -15,6 +17,8 @@ task crearDisco2{
 	new File("dist2").mkdirs()
 }
 
+
+//TARE EXCLUDE, EXCLUYE EN LA COPIA TODOS LOS ARCHIVOS QUE CUMPLAN LA CONDICION
 task copiar2(type: Copy, dependsOn: crearDisco2){
 	from "tools"
 	into "dist2"
@@ -24,14 +28,22 @@ task copiar2(type: Copy, dependsOn: crearDisco2){
 }
 
 
+//EJECUTAR UN ARCHIVO DE TEXTO O TAMBIEN TOMARLO COMO SALIDA.
+
 task ejecutar(type:Exec, dependsOn: copiar){
+	//Segun alguna documentaciones que encontre en internet cualquiera de estas funciones debe fucnionar
+	//pero solo funciona con el cat
 	//commandLine 'less',"-b"
 	//commandLine 'more',"-b"
-	//commandLine 'nano',"-b"
+	//NO FUNCIONA commandLine 'nano',"-b"
 	commandLine 'cat',"-b"
-
 	//standardOutput = new FileOutputStream("dist/salida.txt");
-
 	standardInput = new FileInputStream("dist2/readme.txt");
+}
 
+
+
+task comprimir(type: Zip, dependsOn: copiar){
+	from "dist"
+	archiveName "DatosComprimido.zip"
 }

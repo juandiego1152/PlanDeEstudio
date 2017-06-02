@@ -1,0 +1,17 @@
+apply plugin: 'java'
+
+apply plugin: "application"
+
+//sourceCompatibility = "1.7"
+
+
+mainClassName = "ejemploJava"
+
+jar{
+
+	baseName = "ejemploJava"
+	version= "0.1.0"
+	/*manifest {
+		attributes "Main-Class": "ejemploJava"
+	}*/
+}
