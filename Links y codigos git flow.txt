@@ -1,3 +1,23 @@
+Despues de instalar git en la maquina vamos a configurarlo con los siguientes codigos:
+
+
+git config --global user.name "Juan Diego"
+git config --global user.email "juandiego960304"
+
+para mirarlo es:
+
+git config --global user.name
+
+
+Para cambiar los colores de los mensajes 
+
+giitt config --global color.ui true
+
+Para ver toda nuestra configuracion
+git config --global --list
+
+
+
 
 http://danielkummer.github.io/git-flow-cheatsheet/index.es_ES.html
 
