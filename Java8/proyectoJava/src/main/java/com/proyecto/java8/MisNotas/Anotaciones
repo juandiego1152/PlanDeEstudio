@@ -1,3 +1,4 @@
+DECLARATIVA E IMPERACTICA.
 
 Codigo para realizar un sort a una lista con una condicion lambda.
 
@@ -44,3 +45,24 @@ De esta forma podemos referencia una clase A que contien la clase B y solo llama
 
 iPersona iper3 = Persona::new;
 Persona per = iper3.crear(1, "Sebastian");
+
+
+
+
+
+STREAM
+
+Como podemos filtrar o poner una condicion en una lista usando stream y filter e imprimirlo con la funcion 
+foreach llamandolo como metodo de referencia
+
+lista.stream().filter(x -> x.startsWith("J")).forEach(System.out::println);
+
+Ordenar en Forma Ascendente
+	lista.stream().sorted().forEach(System.out::println);
+		
+Ordenar en Forma Descendente
+	lista.stream().sorted((x,y) -> y.compareTo(x)).forEach(System.out::println);
+
+	
+transformar o convertir, en este caso el ejemplo convierte toda la lista a mayusculas.
+		lista.stream().map(String::toUpperCase).forEach(System.out::println);
