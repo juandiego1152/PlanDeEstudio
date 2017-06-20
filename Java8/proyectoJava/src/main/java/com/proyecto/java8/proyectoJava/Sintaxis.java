@@ -20,8 +20,8 @@ public class Sintaxis {
 		
 		Operacion operacion = (x, y) -> (x+y)/2;
 		
-		return operacion.calcularPromedio(2, 3);
-		
+		//return operacion.calcularPromedio(2, 3);
+		return operacion.calcular(2, 3);
 		
 		//EN ESTA EXPRESION NO VAMOS A USAR PARAMETROS
 		
