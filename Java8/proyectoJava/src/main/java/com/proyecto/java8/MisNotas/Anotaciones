@@ -1,0 +1,46 @@
+
+Codigo para realizar un sort a una lista con una condicion lambda.
+
+List<String> lista = new ArrayList<>();
+	lista.add("Juan");
+	lista.add("Diego");
+	lista.add("Sebastian");
+    	
+	for(String elemento: lista){
+	System.out.println(elemento);
+	}
+	
+	
+	
+Codigo para realizar impresion de una lista con un metodo funcional de java 8
+
+	//En expresion lambda
+	lista.forEach(x -> System.out.println(x));
+
+	//En expresion funcional
+	lista.forEach(System.out::println);
+
+Este es para ordenar con un sort
+	//lambda
+	Collections.sort(lista, (String p1, String p2) -> p1.compareTo(p2));      
+	//Funcional
+	lista.sort((x,y) -> x.compareTo(y));
+	
+	o tambien se pude realizar 
+	
+	Arrays.sort(nombres, String::compareToIgnoreCase);
+
+y este es para remover cumpliendo alguna condicion
+
+	lista.removeIf(x -> x.equalsIgnoreCase("Juan"));
+	
+	
+Estos son metodos funcionales de java 8 para simplicar el codigo, tambien los podemos usar con expresiones
+lambda como lo hice en el prrimer ejemplo.
+
+
+De esta forma podemos referencia una clase A que contien la clase B y solo llamar el metodo y enviar los parametros.
+(Ejemplo MetodosReferenciadosApp)
+
+iPersona iper3 = Persona::new;
+Persona per = iper3.crear(1, "Sebastian");
