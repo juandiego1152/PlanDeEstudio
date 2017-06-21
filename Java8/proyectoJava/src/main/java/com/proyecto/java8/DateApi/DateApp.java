@@ -109,8 +109,7 @@ public class DateApp {
 			DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			LocalDate fechaLocal = LocalDate.parse(fecha, formateador);
 			System.out.println(fechaLocal);
-			System.out.println(formateador.format(fechaLocal));
-			
+			System.out.println(formateador.format(fechaLocal));			
 			formateador = DateTimeFormatter.ofPattern("ddMMyyyy");
 			System.out.println(formateador.format(fechaLocal));
 		}

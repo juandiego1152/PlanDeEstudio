@@ -147,6 +147,62 @@ CONVERTIR O DARLE FORMATO A UNA FECHA
 			System.out.println(formateador.format(fechaLocal));
 			
 			
+
+
+FUNCION DE ALTO ORDEN:
+
+DONDE PODEMOS EN UN METODO LLAMAR VARIAS FUNCIONES COMO UN CONSUMER Y DENTRO DE LA MISMA
+LLAMAR UN PREDICATE QUE NOS DEFINA UN PROCESO LOGICO.
+
+ESTO SE PUEDE VER EN AltoOrdenApp
+
+public void filtrar(List<String> lista, Consumer<String> consumidor, int longitud, String cadena){
+		lista.stream().filter(this.establecerLogica(cadena)).forEach(consumidor);
+	}
+	
+	
+		public Predicate<String> establecerLogica(int longitud){
+		return texto -> texto.length() < longitud;
+	}
+	
+	public Predicate<String> establecerLogica(String cadena){
+		return texto -> texto.contains(cadena);
+	}
+	
+	List<String> lista = new ArrayList<String>();
+		lista.add("Juan");
+		lista.add("Sebastian");
+		lista.add("Jose");
+		lista.add("Adriana");
+		//app.filtrar(lista, System.out::println, 5, null);
+		app.filtrar(lista, System.out::println, 0, "J");
+		
+		
+		
+Y TAMBIEN SE PUEDE USAR PARA RECIBIR UNA FUNCION Y SACAR UNA RESPUESTA.
+
+
+	private Function<String, String> convertirMayusculas = x -> x.toUpperCase();
+	private Function<String, String> convertirMinusculas = x -> x.toLowerCase();
+	
+	public void imprimir(Function<String, String> funcion, String valor){		
+		System.out.println(funcion.apply(valor));
+	}
+	
+	
+	app.imprimir(app.convertirMayusculas, "cadena en minuscula");
+	app.imprimir(app.convertirMinusculas, "CADENA EN MAYUSCULAS");
+		
+		
+	public Function<String, String> mostrar(String mensaje){	
+		return (String x) -> mensaje + x;
+	}
+	
+		
+	String respuesta = app.mostrar("Hola ").apply("Mensaje Salida");
+	System.out.println(respuesta);
+			
+			
 			
 			
 			
