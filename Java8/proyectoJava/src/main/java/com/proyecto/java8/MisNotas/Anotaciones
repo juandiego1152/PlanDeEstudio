@@ -110,6 +110,65 @@ RECOLECTAR CON CONDICION DE UN MAPA A OTRO
 		Map<Integer, String> mapaRecolectado = map.entrySet().stream()
 				.filter(e->e.getValue().contains("J"))
 				.collect(Collectors.toMap(p -> p.getKey(), p -> p.getValue()));
-		
+				
 		mapaRecolectado.forEach((k,v) -> System.out.println("LLave " + k + " Valor " + v));
 	}
+	
+	
+	
+	
+DATE API
+
+Tomar los milisegundo y compararlos, tambien se puede hacer en segundo y horas.
+		Instant ini = Instant.now();
+		Thread.sleep(1000);			
+		Instant fin = Instant.now();
+		System.out.println(Duration.between(ini, fin));
+		System.out.println(Duration.between(ini, fin).toMillis());
+		
+COMPARAR DOS FECHAS Y TOMAR SUS PERIODOS
+
+	LocalDate nacimiento = LocalDate.of(1996, 3, 4);
+	LocalDate actual = LocalDate.now();
+	
+	Period periodo = Period.between(nacimiento, actual);
+	System.out.println("Han pasado " + periodo.getYears() + " años, "
+			+ "" + periodo.getMonths() + " meses y " + periodo.getDays()+" días.");
+						
+						
+CONVERTIR O DARLE FORMATO A UNA FECHA
+
+			String fecha = "04/03/1996";
+			DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			LocalDate fechaLocal = LocalDate.parse(fecha, formateador);
+			System.out.println(fechaLocal);
+			System.out.println(formateador.format(fechaLocal));			
+			formateador = DateTimeFormatter.ofPattern("ddMMyyyy");
+			System.out.println(formateador.format(fechaLocal));
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
