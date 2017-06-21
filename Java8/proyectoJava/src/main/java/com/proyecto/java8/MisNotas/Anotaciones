@@ -66,3 +66,50 @@ Ordenar en Forma Descendente
 	
 transformar o convertir, en este caso el ejemplo convierte toda la lista a mayusculas.
 		lista.stream().map(String::toUpperCase).forEach(System.out::println);
+		
+		
+STREAM PARALELO
+
+	numeros.parallelStream().forEach(System.out::println);
+	
+	double total=lista.stream().parallel().filter(elemento->(elemento>200)).mapToDouble(elemento->elemento*1.21).sum();
+	
+	
+
+USO DE MAP
+
+LLENADO
+
+	private Map<Integer, String> map;
+	
+	public void llenar(){
+		map = new HashMap<>();
+		map.put(1, "Juan Diego");
+		map.put(2, "Sebastian");
+		map.put(3, "Jose Ignacio");
+		map.put(4, "Adrian Maria");
+	}
+
+IMPRIMIR VALORES
+
+	map.entrySet().stream().forEach(System.out::println);
+
+PONER SI NO EXISTE
+
+	map.putIfAbsent(5, "Karine");
+	
+HACER SI EXISTE
+	map.computeIfPresent(3, (k,v)-> k + v);
+	
+OBTENER VALOR Y SI NO EXISTE PONER POR DEFAULT
+	String valor = map.getOrDefault(6, "Valor por defecto");
+	
+RECOLECTAR CON CONDICION DE UN MAPA A OTRO
+
+	public void recolectar(){
+		Map<Integer, String> mapaRecolectado = map.entrySet().stream()
+				.filter(e->e.getValue().contains("J"))
+				.collect(Collectors.toMap(p -> p.getKey(), p -> p.getValue()));
+		
+		mapaRecolectado.forEach((k,v) -> System.out.println("LLave " + k + " Valor " + v));
+	}

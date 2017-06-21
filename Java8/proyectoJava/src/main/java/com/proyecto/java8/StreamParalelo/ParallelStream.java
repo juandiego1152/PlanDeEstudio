@@ -1,7 +1,9 @@
 package com.proyecto.java8.StreamParalelo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class ParallelStream {
 	private List<Integer> numeros;
@@ -26,12 +28,12 @@ public class ParallelStream {
 	public void miEjemplo(){
 	List lista= Arrays.asList(100,200,300,100,500);
 	 
-		double total=lista.parallelStream().parallel().filter(elemento->(elemento>200))
+		double total=((Stream<Integer>) lista.stream().parallel()).filter(elemento->(elemento>200))
 				.mapToDouble(elemento->elemento*1.21).sum();
 	 
 		System.out.println(total);
-		}
 	}
+	
 
 
 	/*ALGUNAS LECTURAS Y TUTORIALES DE STREAM PARALELO
