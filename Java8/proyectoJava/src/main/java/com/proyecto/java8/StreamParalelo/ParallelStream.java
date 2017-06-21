@@ -32,6 +32,16 @@ public class ParallelStream {
 		System.out.println(total);
 		}
 	}
+
+
+	/*ALGUNAS LECTURAS Y TUTORIALES DE STREAM PARALELO
+	 * https://dosideas.com/noticias/java/983-java-8-mas-alla-de-los-lambdas
+	 * 
+	 * https://www.google.com.co/url?sa=t&rct=j&q=&esrc=s&source=web&cd=10&ved=0
+	 * ahUKEwj_wbmI4c3UAhUBRyYKHRgxDtkQFghZMAk&url=http%3A%2F%2Frossainz.cs.buap.
+	 * mx%2FConcurrente2017%2FDiapositivas%2FCap4_Programacion_Paralela.ppsx&usg=
+	 * AFQjCNFB3tM-5TfRNffR5n4yqV4rSzqRGA&sig2=w0ggkgj68oNYEeQE35g3Fw
+	 */
 	public static void main(String[] args) {
 		ParallelStream app = new ParallelStream();
 		app.llenar();
