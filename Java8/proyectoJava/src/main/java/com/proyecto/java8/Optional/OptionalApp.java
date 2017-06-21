@@ -12,8 +12,7 @@ public class OptionalApp {
 			op.get();
 		} catch (Exception e) {
 			System.out.println("No hay tipo");
-		}
-		
+		}		
 	}
 	
 	public void orElse(String valor){
