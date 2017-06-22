@@ -228,6 +228,10 @@ OPTIONAL
 		Integer valor2 = b.orElse(0);
 		
 		
+		Optional<OBJETO> perona = Optional.ofNullable(valoX);
+		return persona.orElse(new persona(x,x,x,x,x));
+		
+		
 			
 		
 			

@@ -28,5 +28,7 @@ public class Optional2 {
 		Optional.ofNullable(obtenerSegundaPalabra.apply("Juan Diego")).ifPresent(System.out::println);
 		
 		Optional.ofNullable(obtenerSegundaPalabra.apply("Juan Diego")).map(contarLetras).ifPresent(System.out::println);
+		
+	
 	}
 }
