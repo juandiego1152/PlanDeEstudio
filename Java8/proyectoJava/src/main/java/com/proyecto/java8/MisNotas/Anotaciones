@@ -1,5 +1,8 @@
 DECLARATIVA E IMPERACTICA.
 
+
+
+
 Codigo para realizar un sort a una lista con una condicion lambda.
 
 List<String> lista = new ArrayList<>();
@@ -66,6 +69,11 @@ Ordenar en Forma Descendente
 	
 transformar o convertir, en este caso el ejemplo convierte toda la lista a mayusculas.
 		lista.stream().map(String::toUpperCase).forEach(System.out::println);
+	
+hacer suma de toda una lista
+
+	lista.stream().reduce(Integer::sum);
+	
 		
 		
 STREAM PARALELO
@@ -206,10 +214,22 @@ Y TAMBIEN SE PUEDE USAR PARA RECIBIR UNA FUNCION Y SACAR UNA RESPUESTA.
 			
 			
 			
+OPTIONAL 
+
+		Optional.ofNullable(cadena1);
+		
+		Optional<Integer>  c = Optional.empty();
+		c.ofNullable(cadena1);		
+		
+		Optional<Integer>  b = Optional.ofNullable(valor2);		
+		
+		System.out.println(a.isPresent());
+				
+		Integer valor2 = b.orElse(0);
+		
+		
 			
-			
-			
-			
+		
 			
 			
 			
