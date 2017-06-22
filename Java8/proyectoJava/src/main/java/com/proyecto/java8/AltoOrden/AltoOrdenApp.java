@@ -13,6 +13,8 @@ public class AltoOrdenApp {
 	private Function<String, String> convertirMayusculas = x -> x.toUpperCase();
 	private Function<String, String> convertirMinusculas = x -> x.toLowerCase();
 	
+	
+	
 	public void imprimir(Function<String, String> funcion, String valor){		
 		System.out.println(funcion.apply(valor));
 	}
@@ -53,5 +55,6 @@ public class AltoOrdenApp {
 		lista.add("Adriana");
 		//app.filtrar(lista, System.out::println, 5, null);
 		app.filtrar(lista, System.out::println, 0, "J");
+		
 	}
 }

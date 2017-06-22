@@ -1,6 +1,5 @@
 package com.proyecto.java8.HashMap;
 
-import java.security.KeyStore.Entry;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;

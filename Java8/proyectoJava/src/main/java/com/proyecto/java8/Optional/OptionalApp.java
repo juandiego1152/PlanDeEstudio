@@ -34,8 +34,14 @@ public class OptionalApp {
 	public static void main(String[] args) {
 			OptionalApp app = new OptionalApp();
 			//app.probar(null);
+			
+			//PONIENDO ALGUN VALOR PREDETERMINADO
 			//app.orElse("juan");
+			
+			//DEVUELVE VALOR CATCH DE JAVA
 			//app.orElseThrow(null);
-			app.isPresent("juan");
+			
+			//DEVUELVE TRUE O FALSE
+			app.isPresent(null);
 	}
 }
