@@ -66,3 +66,165 @@ Ordenar en Forma Descendente
 	
 transformar o convertir, en este caso el ejemplo convierte toda la lista a mayusculas.
 		lista.stream().map(String::toUpperCase).forEach(System.out::println);
+		
+		
+STREAM PARALELO
+
+	numeros.parallelStream().forEach(System.out::println);
+	
+	double total=lista.stream().parallel().filter(elemento->(elemento>200)).mapToDouble(elemento->elemento*1.21).sum();
+	
+	
+
+USO DE MAP
+
+LLENADO
+
+	private Map<Integer, String> map;
+	
+	public void llenar(){
+		map = new HashMap<>();
+		map.put(1, "Juan Diego");
+		map.put(2, "Sebastian");
+		map.put(3, "Jose Ignacio");
+		map.put(4, "Adrian Maria");
+	}
+
+IMPRIMIR VALORES
+
+	map.entrySet().stream().forEach(System.out::println);
+
+PONER SI NO EXISTE
+
+	map.putIfAbsent(5, "Karine");
+	
+HACER SI EXISTE
+	map.computeIfPresent(3, (k,v)-> k + v);
+	
+OBTENER VALOR Y SI NO EXISTE PONER POR DEFAULT
+	String valor = map.getOrDefault(6, "Valor por defecto");
+	
+RECOLECTAR CON CONDICION DE UN MAPA A OTRO
+
+	public void recolectar(){
+		Map<Integer, String> mapaRecolectado = map.entrySet().stream()
+				.filter(e->e.getValue().contains("J"))
+				.collect(Collectors.toMap(p -> p.getKey(), p -> p.getValue()));
+				
+		mapaRecolectado.forEach((k,v) -> System.out.println("LLave " + k + " Valor " + v));
+	}
+	
+	
+	
+	
+DATE API
+
+Tomar los milisegundo y compararlos, tambien se puede hacer en segundo y horas.
+		Instant ini = Instant.now();
+		Thread.sleep(1000);			
+		Instant fin = Instant.now();
+		System.out.println(Duration.between(ini, fin));
+		System.out.println(Duration.between(ini, fin).toMillis());
+		
+COMPARAR DOS FECHAS Y TOMAR SUS PERIODOS
+
+	LocalDate nacimiento = LocalDate.of(1996, 3, 4);
+	LocalDate actual = LocalDate.now();
+	
+	Period periodo = Period.between(nacimiento, actual);
+	System.out.println("Han pasado " + periodo.getYears() + " años, "
+			+ "" + periodo.getMonths() + " meses y " + periodo.getDays()+" días.");
+						
+						
+CONVERTIR O DARLE FORMATO A UNA FECHA
+
+			String fecha = "04/03/1996";
+			DateTimeFormatter formateador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			LocalDate fechaLocal = LocalDate.parse(fecha, formateador);
+			System.out.println(fechaLocal);
+			System.out.println(formateador.format(fechaLocal));			
+			formateador = DateTimeFormatter.ofPattern("ddMMyyyy");
+			System.out.println(formateador.format(fechaLocal));
+			
+			
+
+
+FUNCION DE ALTO ORDEN:
+
+DONDE PODEMOS EN UN METODO LLAMAR VARIAS FUNCIONES COMO UN CONSUMER Y DENTRO DE LA MISMA
+LLAMAR UN PREDICATE QUE NOS DEFINA UN PROCESO LOGICO.
+
+ESTO SE PUEDE VER EN AltoOrdenApp
+
+public void filtrar(List<String> lista, Consumer<String> consumidor, int longitud, String cadena){
+		lista.stream().filter(this.establecerLogica(cadena)).forEach(consumidor);
+	}
+	
+	
+		public Predicate<String> establecerLogica(int longitud){
+		return texto -> texto.length() < longitud;
+	}
+	
+	public Predicate<String> establecerLogica(String cadena){
+		return texto -> texto.contains(cadena);
+	}
+	
+	List<String> lista = new ArrayList<String>();
+		lista.add("Juan");
+		lista.add("Sebastian");
+		lista.add("Jose");
+		lista.add("Adriana");
+		//app.filtrar(lista, System.out::println, 5, null);
+		app.filtrar(lista, System.out::println, 0, "J");
+		
+		
+		
+Y TAMBIEN SE PUEDE USAR PARA RECIBIR UNA FUNCION Y SACAR UNA RESPUESTA.
+
+
+	private Function<String, String> convertirMayusculas = x -> x.toUpperCase();
+	private Function<String, String> convertirMinusculas = x -> x.toLowerCase();
+	
+	public void imprimir(Function<String, String> funcion, String valor){		
+		System.out.println(funcion.apply(valor));
+	}
+	
+	
+	app.imprimir(app.convertirMayusculas, "cadena en minuscula");
+	app.imprimir(app.convertirMinusculas, "CADENA EN MAYUSCULAS");
+		
+		
+	public Function<String, String> mostrar(String mensaje){	
+		return (String x) -> mensaje + x;
+	}
+	
+		
+	String respuesta = app.mostrar("Hola ").apply("Mensaje Salida");
+	System.out.println(respuesta);
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
