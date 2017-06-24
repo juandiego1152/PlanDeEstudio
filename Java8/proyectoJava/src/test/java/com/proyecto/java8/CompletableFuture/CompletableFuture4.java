@@ -1,4 +1,4 @@
-package com.proyecto.java8.proyectoJava;
+package com.proyecto.java8.CompletableFuture;
 
 import static org.junit.Assert.*;
 

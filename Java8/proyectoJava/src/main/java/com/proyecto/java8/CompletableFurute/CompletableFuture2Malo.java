@@ -3,9 +3,9 @@ package com.proyecto.java8.CompletableFurute;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class CompletableFuture2 {
+public class CompletableFuture2Malo {
 
-	
+	// https://blog.logentries.com/2015/07/playing-with-java-8s-completable-futures/
 	public CompletableFuture<Object> countEvents() {	
 		CompletableFuture<Object> result = new CompletableFuture<>();
 	    AtomicInteger count = new AtomicInteger();

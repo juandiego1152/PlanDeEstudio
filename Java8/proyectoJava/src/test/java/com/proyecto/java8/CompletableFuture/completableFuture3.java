@@ -1,4 +1,4 @@
-package com.proyecto.java8.proyectoJava;
+package com.proyecto.java8.CompletableFuture;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -16,5 +16,7 @@ public class completableFuture3 extends TestCase {
 		  assertEquals(alreadyCompleted.get(), expectedValue);
 		  		  		  
 	}
+	
+	
 
 }

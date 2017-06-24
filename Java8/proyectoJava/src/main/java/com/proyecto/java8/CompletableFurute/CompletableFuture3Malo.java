@@ -1,7 +1,7 @@
 package com.proyecto.java8.CompletableFurute;
 
 import java.util.concurrent.CompletableFuture;
-public class CompletableFuture3Mal {
+public class CompletableFuture3Malo {
 
 	public CompletableFuture<String>  resultado;
 	
@@ -14,7 +14,7 @@ public class CompletableFuture3Mal {
 	}
 
 	public static void main(String[] args) throws Exception {
-		CompletableFuture3Mal  app = new CompletableFuture3Mal();
+		CompletableFuture3Malo  app = new CompletableFuture3Malo();
 		System.out.println("Entro al main");
 		app.test_completed_future();	
 	}	
