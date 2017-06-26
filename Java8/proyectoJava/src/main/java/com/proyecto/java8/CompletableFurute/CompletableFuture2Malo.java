@@ -34,7 +34,8 @@ public class CompletableFuture2Malo {
 	public void mensaje(){
 		CompletableFuture<String> data = countEvents()
 		    .thenApply(count -> {
-		        int transformedValue = count * 25;
+		    	int transformedValue = count;
+		        //int transformedValue = count * 25;
 		        return transformedValue;
 		    }).thenApply(transformed -> "data-" + transformed);
 

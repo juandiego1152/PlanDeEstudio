@@ -11,7 +11,7 @@ import org.junit.Test;
 
 public class future6 {
 
-	private static ExecutorService service = Executors.newCachedThreadPool();
+	//private static ExecutorService service = Executors.newCachedThreadPool();
 
 	@Test
 	public void test() {
@@ -20,7 +20,7 @@ public class future6 {
 
 	@Test
     public void test_supply_async() throws Exception {
-        CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> simulatedTask(1, "Final Result"), service);
+        CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> simulatedTask(1, "Final Result"));
         assertEquals(completableFuture.get(), "Término");
     }
 
