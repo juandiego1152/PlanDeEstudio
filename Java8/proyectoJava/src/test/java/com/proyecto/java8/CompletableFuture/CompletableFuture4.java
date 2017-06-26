@@ -33,15 +33,15 @@ public class CompletableFuture4 {
 	    	  
 	}
 	
-	public Future<String> calculateAsync2() throws InterruptedException {
-		  CompletableFuture<String> resultado = CompletableFuture.supplyAsync(
-				  () -> {					  
-						Thread.sleep(2000);					
-				  }
-				  );
-		  resultado.complete("Hello");
-		  return resultado;
-				  
+	public Future<String> calculateAsync2(){
+		
+		  CompletableFuture<String> resultado = CompletableFuture.supplyAsync(() -> {		  
+						try {
+							Thread.sleep(2000);
+						} catch (Exception e) {	}
+						return "Hello";
+				  });
+		return resultado;	
 	}			
 	
 	   
