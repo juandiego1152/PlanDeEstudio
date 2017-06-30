@@ -236,7 +236,38 @@ OPTIONAL
 		
 			
 			
-			
+LOGGER
+
+
+	/*Tipos de alertas de importancia alta.
+    LOGGER.severe("Severe");
+    LOGGER.info("Info");
+    LOGGER.warning("Warning");
+    LOGGER.log(Level.SEVERE, "Severe 2");
+    LOGGER.log(Level.INFO, "Info 2");
+    LOGGER.log(Level.WARNING, "Warning 2");
+    
+    Tipos de alerta de importancia baja, para que este tipo de alertas tambien salga debemos 
+    configurar el archivo ubicado en: C:\Program Files (x86)\Java\jdk1.7.0_51\jre\lib\logging.properties
+    y agregar al final de la linea el nombre del Logger y el nivel All: "Mylogger.level = ALL"
+    asi todos los logger que tengan este nombre o sean de esta clase van a funcionar tambien los mensajes
+    de baja importancia.       
+    
+    LOGGER.setLevel(Level.ALL);
+    LOGGER.config("Config");
+    LOGGER.fine("Fine");
+    LOGGER.finer("Finer");*/        
+    
+	/*Podemos darle un nombre para decir que este logger pertenece a una clase especifica,
+	y asi en el archivo logger podremos definirle si este tipo de Logger tomara tambien mensajes
+	con importancia baja*/
+	
+	private final static Logger LOGGER = Logger.getLogger("Mylogger");
+	
+	//o podemos usar este tipo de looger para decir que hace referencia a esa clase
+	
+	private final static Logger LOGGER1 = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+	private final static Logger LOGGER2 = Logger.getLogger(CompletableFuture14.class.getName());	
 			
 			
 			
