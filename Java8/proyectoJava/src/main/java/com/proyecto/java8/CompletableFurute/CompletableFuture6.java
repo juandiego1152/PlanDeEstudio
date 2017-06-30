@@ -1,4 +1,4 @@
-package com.proyecto.java8.CompletableFuture;
+package com.proyecto.java8.CompletableFurute;
 
 import static org.junit.Assert.*;
 
@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 
 import org.junit.Test;
 
-public class future6 {
+public class CompletableFuture6 {
 
 	//private static ExecutorService service = Executors.newCachedThreadPool();
 

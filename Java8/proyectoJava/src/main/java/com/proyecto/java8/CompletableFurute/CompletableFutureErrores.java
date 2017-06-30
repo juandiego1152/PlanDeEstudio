@@ -34,13 +34,13 @@ public class CompletableFutureErrores {
 		//System.out.println(tarea2.get());
 		
 		
-		/*Callable<String> respuestaHilo =  new CHilo();
-		CompletableFuture<String> respuestaCom = (CompletableFuture<String>) executor.submit(respuestaHilo);
+		CompletableFuture<String> respuestaHilo =  CompletableFuture.supplyAsync(new CHilo);
+		CompletableFuture<String> respuestaCom = executor.submit(respuestaHilo);
 		
 		String repuesta = respuestaCom.get();
-		System.out.println("Completado: " + repuesta);*/
+		System.out.println("Completado: " + repuesta);
 		
-		CompletableFuture<String> respuesta = CompletableFuture.supplyAsync( new CHilo());
+		//CompletableFuture<String> respuesta = CompletableFuture.supplyAsync( new CHilo());
 		
 
 		

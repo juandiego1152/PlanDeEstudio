@@ -1,6 +1,7 @@
 package com.proyecto.java8.CompletableFurute;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class CompletableFuture2Malo {
@@ -42,7 +43,7 @@ public class CompletableFuture2Malo {
 		try {
 		    System.out.println(data.get());
 		} catch (InterruptedException | ExecutionException e) {
-		    e.printStaceTrace();
+	
 		}
 	}
 

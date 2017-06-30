@@ -1,4 +1,4 @@
-package com.proyecto.java8.CompletableFuture;
+package com.proyecto.java8.CompletableFurute;
 
 import static org.junit.Assert.*;
 
@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 
 import org.junit.Test;
 
-public class Future8 {
+public class CompletableFuture8 {
 
 
 	@Test

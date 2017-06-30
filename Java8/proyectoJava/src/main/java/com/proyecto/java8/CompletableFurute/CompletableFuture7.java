@@ -1,4 +1,4 @@
-package com.proyecto.java8.CompletableFuture;
+package com.proyecto.java8.CompletableFurute;
 
 import static org.junit.Assert.*;
 
@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 
 import org.junit.Test;
 
-public class Future7 {
+public class CompletableFuture7 {
 
 	@Test
 	public void test() {
@@ -26,33 +26,6 @@ public class Future7 {
 
 	private static ExecutorService service = Executors.newCachedThreadPool();
 	
-	/* @Test
-    public void test_then_run_async() throws Exception {
-        Map<String,String> cache = new HashMap<>();
-        cache.put("key","value");
-        CompletableFuture<String> taskUsingCache = CompletableFuture.supplyAsync(simulatedTask(1,cache.get("key")));
-        CompletableFuture<Void> cleanUp = taskUsingCache.thenRunAsync(cache::clear);
-        cleanUp.get();
-        String theValue = taskUsingCache.get();
-        assertEquals(cache.isEmpty(),true);
-        //assertEquals(theValue,"value");
-    }
-
-	private String simulatedTask(int i, String string) {
-		
-		return "value";
-	}
-	
-	@Test
-	public void test_accept_result() throws Exception {
-		List<String> results = new ArrayList<String>();
-        CompletableFuture<String> task = CompletableFuture.supplyAsync(simulatedTask(1, "add when done"), service);
-        CompletableFuture<Void> acceptingTask = task.thenAccept(results::add);
-    
-        assertEquals(acceptingTask.isDone(), true);
-        assertEquals(results.size(), 1);
-        assertEquals(results.contains("add when done"), true);
-    }*/
 	
 	
 	@Test
@@ -78,4 +51,5 @@ public class Future7 {
 	  assertEquals(summedMultiples.get(), new Integer(715));
 	  }
 
+	
 }

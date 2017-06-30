@@ -1,4 +1,4 @@
-package com.proyecto.java8.CompletableFuture;
+package com.proyecto.java8.CompletableFurute;
 
 import static org.junit.Assert.*;
 
@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 
 import org.junit.Test;
 
-public class Future13 {
+public class CompletableFuture13 {
 
 	@Test
 	public void test() {
@@ -34,6 +34,7 @@ public class Future13 {
         CompletableFuture<String> stage6_sub_1_slow = CompletableFuture.supplyAsync(tareaSimulada("fell into"));
 
         CompletableFuture<String> stage7 = stage6.applyToEitherAsync(stage6_sub_1_slow,String::toUpperCase);
+        //CompletableFuture<String> stage7 = stage6.acceptEither(stage6_sub_1_slow,String::toUpperCase);
 
         CompletableFuture<String> stage8 = CompletableFuture.supplyAsync(tareaSimulada(" the lazy dog"));
 
