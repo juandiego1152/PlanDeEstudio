@@ -231,9 +231,7 @@ OPTIONAL
 		Optional<OBJETO> perona = Optional.ofNullable(valoX);
 		return persona.orElse(new persona(x,x,x,x,x));
 		
-		
-			
-		
+	
 			
 			
 LOGGER
@@ -272,6 +270,9 @@ LOGGER
 			
 			
 			
+COMPLETABLE FUTURE 
+
+
 			
 			
 			

@@ -16,10 +16,7 @@ public class CompletableFuture4 {
 		Future<String> completableFuture = calculateAsync();		
 		String result = completableFuture.get();
 		assertEquals("Hello", result);
-	}
-	
-	
-	
+	}			
 	
 	public Future<String> calculateAsync() throws InterruptedException {
 	    CompletableFuture<String> completableFuture = new CompletableFuture<>();
@@ -29,12 +26,10 @@ public class CompletableFuture4 {
 	        completableFuture.complete("Hello");
 	        return null;
 	    });
-	    return completableFuture;
-	    	  
+	    return completableFuture;	    	  
 	}
 	
-	public Future<String> calculateAsync2(){
-		
+	public Future<String> calculateAsync2(){		
 		  CompletableFuture<String> resultado = CompletableFuture.supplyAsync(() -> {		  
 						try {
 							Thread.sleep(2000);
@@ -42,7 +37,6 @@ public class CompletableFuture4 {
 						return "Hello";
 				  });
 		return resultado;	
-	}			
-	
+	}	
 	   
 }

@@ -2,6 +2,7 @@ package com.proyecto.java8.HashMap;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 public class MapApp {
