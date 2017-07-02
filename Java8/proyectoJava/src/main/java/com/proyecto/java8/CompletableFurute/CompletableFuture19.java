@@ -6,7 +6,11 @@ import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
 public class CompletableFuture19 {
-
+	/*handle: registra un callback para gestionar el resultado o excepción. 
+	 Recibe una lambda que tiene dos parámetros, el resultado y la excepción. 
+	 Si la excepción no es nula, es que ha habido una excepción. También
+	 deber retornar un valor del tipo del futuro que lanzo la excepción.*/
+	
 	private static final ExecutorService executor = Executors.newCachedThreadPool();
 	private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	
