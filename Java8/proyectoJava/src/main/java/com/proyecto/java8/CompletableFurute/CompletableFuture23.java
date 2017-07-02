@@ -18,14 +18,14 @@ public class CompletableFuture23 {
 	    LOGGER.info("Comenzando future1 for thenAcceptBoth...");
 	    Sleep(2);
 	    LOGGER.info("Terminado future1 for thenAcceptBoth!");
-	    return "Terminado";
+	    return "Terminado 1 ";
 	}, executor);
 	 
 	CompletableFuture<String> future2 = CompletableFuture.supplyAsync(() -> {
 	    LOGGER.info("Comenzando future2 for thenAcceptBoth...");
 	    Sleep(1);
 	    LOGGER.info("Terminado future2 for thenAcceptBoth!");
-	    return "Terminado other";
+	    return "Terminado 2";
 	}, executor);
 	 
 	
