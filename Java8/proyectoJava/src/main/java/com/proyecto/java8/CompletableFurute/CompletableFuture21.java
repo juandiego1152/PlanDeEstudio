@@ -21,7 +21,7 @@ public class CompletableFuture21 {
                         LOGGER.info("Comenzando thenCompose...");
                         Sleep(2);
                         LOGGER.info("Terminado thenCompose!");
-                        return s.concat(" + Terminado other");
+                        return s.concat(" + Terminado thenCompose");
                     }, executor),
                     executor);
     
