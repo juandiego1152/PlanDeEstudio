@@ -5,7 +5,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
-public class CompletableFuture27 {
+public class CompletableFuture27_allOf_anyOf {
 
 	private static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	private static ExecutorService executor = Executors.newCachedThreadPool();
@@ -46,7 +46,7 @@ public class CompletableFuture27 {
 	}
 		
 	public static void main(String[] args) {
-		CompletableFuture27 app = new CompletableFuture27();
+		CompletableFuture27_allOf_anyOf app = new CompletableFuture27_allOf_anyOf();
 		app.llamarMetodo();
 	}
 }

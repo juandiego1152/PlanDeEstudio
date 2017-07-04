@@ -21,12 +21,11 @@ public class CompletableFuture14_thenApplyAsync {
 	public void llamarMetodos() throws InterruptedException, ExecutionException{				
 		futureApply.whenCompleteAsync((s, e) -> LOGGER.info("Resultado applyAsync: {}" + s) );
 	}
-	
-	 
+		 
 	CompletableFuture<String> futureAsync = CompletableFuture.supplyAsync(() -> {	  
 	 	LOGGER.log(Level.INFO, "Comenzando supplyAsync for thenApply...");
-	    //Sleep.sleepSeconds(2);
-	    Sleep(2);		  
+	    Sleep.sleepSeconds(2);
+	    	  
 	    LOGGER.log(Level.INFO, "Terminado supplyAsync for thenApply!");
 	    return "Terminado";
 	}, executor);
@@ -34,22 +33,9 @@ public class CompletableFuture14_thenApplyAsync {
 	CompletableFuture<String> futureApply = futureAsync.thenApplyAsync(s -> {
 		//System.out.println("Comenzando applyAsync...");
 	    LOGGER.info("Comenzando applyAsync...");
-	    //Sleep.sleepSeconds(2);
-	    Sleep(2);
+	    Sleep.sleepSeconds(2);	
 	    LOGGER.info("Terminado applyAsync!");
 	    return s.toUpperCase();
 	}, executor);
-	
-	 private void Sleep(int i) {
-		try{
-			//Thread.sleep(i * 1000);
-			int finalx = i * 1000;
-			int x = 0;
-			while (x < finalx) {
-				System.out.println(x);
-				Thread.sleep(1000);
-				x = x + 1000;				 
-			}		
-		}catch(InterruptedException e){	}			
-	}			
+				
 }

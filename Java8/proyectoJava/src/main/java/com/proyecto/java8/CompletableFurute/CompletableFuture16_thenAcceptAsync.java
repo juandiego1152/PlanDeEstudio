@@ -6,7 +6,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
-public class CompletableFuture16 {
+public class CompletableFuture16_thenAcceptAsync {
 	
 	private static final ExecutorService executor = Executors.newCachedThreadPool();
 	private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -19,7 +19,7 @@ public class CompletableFuture16 {
 	}, executor); 	 
 	
 	public static void main(String[] args) throws InterruptedException, ExecutionException {	        
-		CompletableFuture16 app = new CompletableFuture16();
+		CompletableFuture16_thenAcceptAsync app = new CompletableFuture16_thenAcceptAsync();
 		app.llamarMetodos();		
     } 
 	

@@ -286,6 +286,16 @@ COMPLETABLE FUTURE
 	 ----------------- thenApply: 
 	para transformar futuros. La idea es pasarle una función lambda que transforme el resultado del primero.
 	
+	 ----------------- thenApplyAsync
+	 
+	CompletableFuture<String> futureApply = futureAsync.thenApplyAsync(s -> {
+		//System.out.println("Comenzando applyAsync...");
+	    LOGGER.info("Comenzando applyAsync...");
+	    Sleep.sleepSeconds(2);	
+	    LOGGER.info("Terminado applyAsync!");
+	    return s.toUpperCase();
+	}, executor);
+	
 	
 	 ----------------- thenAccept y thenRun
 	muy similares al whenComplete, ejecutaran el lambda una vez se complete el futuro. 
@@ -293,6 +303,34 @@ COMPLETABLE FUTURE
 	
 	CompletableFuture<Void> future = nombreCompletableParaEximanar.thenAccept(s -> System.out.println("Valor de retorno: " + s));
 	
+	thenAcceptAsync
+	
+	futureAsync.thenAcceptAsync(s -> { 
+		    LOGGER.info("Comenzando thenAccept...");
+		    Sleep(2);
+		    LOGGER.info("Terminado thenAccept!");
+		    LOGGER.info("Resultado: {}" + s);
+		}, executor);	
+		
+	thenRunAsync
+	
+	futureRun.thenRunAsync(() -> {
+	    LOGGER.info("Comenzando thenRun...");
+	    Sleep.sleepSeconds(2);
+	    LOGGER.info("Terminado thenRun!");
+	}, executor);
+	
+	----------------- thenAcceptBothAsync
+	
+	future1.thenAcceptBothAsync(future2, (s1, s2) ->
+        LOGGER.info("En el thenAcceptBoth, recibidos results: {}, {}"+ s1+ s2)
+    	, executor);    	
+	
+	----------------- runAfterBothAsync
+	
+	future1.runAfterBothAsync(future2, () -> LOGGER.info("En el runAfterBoth, futuros terminados.")
+	        , executor);
+    	
 	 ----------------- completedFuture
 	
 	String expectedValue = "the expected value";
@@ -319,29 +357,99 @@ COMPLETABLE FUTURE
 	CompletableFuture<String> CompletableConElValor = CompletableFuture.completedFuture("valor conocido");
 	CompletableFuture<String> combined = completableAsincrono.thenCombine(CompletableConElValor, resultadoCalculo);
 	
-	 ----------------- thenComposeAsync
+	----------------- thenComposeAsync
 	
 	CompletableFuture<Integer> resultado = obtenerNumeros.thenComposeAsync(suma, service);
+
+	  CompletableFuture<String> fCompose = future1.thenComposeAsync(s -> CompletableFuture.supplyAsync(() -> {
+            LOGGER.info("Comenzando thenCompose...");
+            Sleep.sleepSeconds(2);
+            LOGGER.info("Terminado thenCompose!");
+            return s.concat(" + Terminado thenCompose");
+        }, executor),
+        executor);
+        
+    fCompose.whenCompleteAsync((s, e) -> LOGGER.info("Resultado thenCompose: {}"+ s), executor);
 			
 			
-	runAfterBothAsync	
+	----------------- runAfterBothAsync	
 	
 	thenAcceptBoth y runAfterBoth: Muy similares al ‘thenCombine’, excepto que no generan un nuevo futuro, 
 	simplemente ejecutan la lambda cuando los dos futuros terminen. Es como un ‘whenComplete‘ pero esperando dos futuros:
 	
 	CompletableFuture<Void> finisher = "futuro1".runAfterBothAsync("futuro2",() -> results. add(results.get(0)+ "&"+results.get(1)));	
 			
-	acceptEither	
+	----------------- acceptEither	
 		
 	acceptEither y runAfterEither: En algunos casos en que tengamos dos futuros nos interesará hacer algo cuando uno 
 	de los dos termine, el primero que lo haga. Para eso están estos dos métodos.	
 	
-	CompletableFuture<Void> collector = tarea1.acceptEither(tarea2, results::add);		
+	CompletableFuture<Void> collector = tarea1.acceptEither(tarea2, results::add);	
+	
+	----------------- acceptEitherAsync
+	
+	future1.acceptEitherAsync(future2, (s) -> LOGGER.info("En el acceptEither, recibido el primer resultado: {}"+ s)
+        	, executor);
+	
+	----------------- runAfterEitherAsync
+		
 	CompletableFuture<Void> finisher = run1.runAfterEitherAsync(run2,() -> results.add(results.get(0).toUpperCase()));
 	
+	future1.runAfterEitherAsync(future2, () -> LOGGER.info("En el runAfterEither, primero terminado.")
+                , executor);
+	
+	----------------- whenCompleteAsync
+	
+	futureApply.whenCompleteAsync((s, e) -> LOGGER.info("Resultado applyAsync: {}" + s) );
 	
 	
+	----------------- exceptionally
 	
+	CompletableFuture<String> futureAsync = CompletableFuture.supplyAsync(() -> {
+	    LOGGER.info("Comenzando supplyAsync with exception...");
+	    Sleep(2);
+	    LOGGER.info("Terminado supplyAsync with exception!");
+	    throw new RuntimeException("Error en el futuro");
+	    //return "bueno";
+	}, executor);
+	 
+	CompletableFuture<String> futureEx = futureAsync.exceptionally(e -> {
+	    LOGGER.warning("Resultado con excepción!!");
+	    return "Entro a la excepcion.";
+	});
+	
+	
+	----------------- handleAsync
+	handle: registra un callback para gestionar el resultado o excepción. Recibe una lambda que tiene dos parámetros, 
+	el resultado y la excepción. Si la excepción no es nula, es que ha habido una excepción. 
+	También	deber retornar un valor del tipo del futuro que lanzo la excepción.
+	 
+	CompletableFuture<String> futureAsync = CompletableFuture.supplyAsync(() -> {
+	    LOGGER.info("Comenzando supplyAsync con exception...");
+	    Sleep(2);
+	    LOGGER.info("Terminado supplyAsync con exception!");
+	    throw new RuntimeException("Error en el futuro");
+	}, executor);
+	 
+	CompletableFuture<String> handledFuture = futureAsync.handleAsync((s, e) -> {
+	    if (e != null) {
+	        LOGGER.severe("Resultado con excepción!! "+ e);
+	        return "StringPorDefecto";
+	    } else {
+	        LOGGER.info("Resultado: {}"+ s);
+	        return s;
+	    }
+	}, executor);
+	
+	----------------- allOf
+	CompletableFuture<Void> all = CompletableFuture.allOf(future1, future2, future3);
+	all.whenCompleteAsync((s, e) -> LOGGER.info("Resultado all: {}"+ s), executor);*/
+	    
+	    
+	----------------- anyOf
+	
+    CompletableFuture<Object> all = CompletableFuture.anyOf(future1, future2, future3);
+    all.whenCompleteAsync((s, e) -> LOGGER.info("Resultado any: {}"+ s), executor);
 	
 	
 	Sleep.sleepSeconds

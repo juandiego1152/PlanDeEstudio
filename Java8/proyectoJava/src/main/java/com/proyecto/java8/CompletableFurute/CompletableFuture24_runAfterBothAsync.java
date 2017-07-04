@@ -5,7 +5,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
-public class CompletableFuture24 {
+public class CompletableFuture24_runAfterBothAsync {
 	
 	private static final ExecutorService executor = Executors.newCachedThreadPool();
 	private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -34,7 +34,7 @@ public class CompletableFuture24 {
 	}
 		
 	public static void main(String[] args) {
-		CompletableFuture24 app = new CompletableFuture24();
+		CompletableFuture24_runAfterBothAsync app = new CompletableFuture24_runAfterBothAsync();
 		app.llamarMetodo();
 	}
 	

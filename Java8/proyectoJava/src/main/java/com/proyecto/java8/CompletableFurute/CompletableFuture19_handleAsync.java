@@ -5,7 +5,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
-public class CompletableFuture19 {
+public class CompletableFuture19_handleAsync {
 	/*handle: registra un callback para gestionar el resultado o excepción. 
 	 Recibe una lambda que tiene dos parámetros, el resultado y la excepción. 
 	 Si la excepción no es nula, es que ha habido una excepción. También
@@ -16,9 +16,9 @@ public class CompletableFuture19 {
 	
 		
 	CompletableFuture<String> futureAsync = CompletableFuture.supplyAsync(() -> {
-	    LOGGER.info("Comenzando supplyAsync with exception...");
+	    LOGGER.info("Comenzando supplyAsync con exception...");
 	    Sleep(2);
-	    LOGGER.info("Terminado supplyAsync with exception!");
+	    LOGGER.info("Terminado supplyAsync con exception!");
 	    throw new RuntimeException("Error en el futuro");
 	}, executor);
 	 
@@ -38,7 +38,7 @@ public class CompletableFuture19 {
 	}
 	
 	public static void main(String[] args) {
-		CompletableFuture19 app = new CompletableFuture19();
+		CompletableFuture19_handleAsync app = new CompletableFuture19_handleAsync();
 		app.llamarMetodo();
 	}
 	

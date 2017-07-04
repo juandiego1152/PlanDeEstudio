@@ -5,15 +5,15 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
-public class CompletableFuture18 {
+public class CompletableFuture18_exceptionally {
 
 	private static final ExecutorService executor = Executors.newCachedThreadPool();
 	private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	
 	CompletableFuture<String> futureAsync = CompletableFuture.supplyAsync(() -> {
-	    LOGGER.info("Comenzando supplyAsync with exception...");
+	    LOGGER.info("Comenzando supplyAsync con exception...");
 	    Sleep(2);
-	    LOGGER.info("Terminado supplyAsync with exception!");
+	    LOGGER.info("Terminado supplyAsync con exception!");
 	    throw new RuntimeException("Error en el futuro");
 	    //return "bueno";
 	}, executor);
@@ -24,12 +24,12 @@ public class CompletableFuture18 {
 	});
 	 
 	public void llamarMetodo(){
-		futureEx.whenCompleteAsync((s, e) -> LOGGER.info("Resultado futureEx: "+ s),
+		futureEx.whenCompleteAsync((s, e) -> LOGGER.info("Resultado future: "+ s),
 		        executor);
 	}
 	
 	public static void main(String[] args) {
-		CompletableFuture18 app = new CompletableFuture18();
+		CompletableFuture18_exceptionally app = new CompletableFuture18_exceptionally();
 		app.llamarMetodo();
 	}
 	

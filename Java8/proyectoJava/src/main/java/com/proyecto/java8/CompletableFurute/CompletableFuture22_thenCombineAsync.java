@@ -6,7 +6,7 @@ import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
 
-public class CompletableFuture22 {
+public class CompletableFuture22_thenCombineAsync {
 
 	private static final ExecutorService executor = Executors.newCachedThreadPool();
 	private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -48,7 +48,7 @@ public class CompletableFuture22 {
 	}
 	
 	public static void main(String[] args) {
-		CompletableFuture22 app = new CompletableFuture22();
+		CompletableFuture22_thenCombineAsync app = new CompletableFuture22_thenCombineAsync();
 		app.llamarMetodo();
 	}
 	
