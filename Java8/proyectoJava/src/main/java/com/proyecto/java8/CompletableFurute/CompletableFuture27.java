@@ -34,8 +34,15 @@ public class CompletableFuture27 {
    
     
     public void llamarMetodo(){ 
-    	 CompletableFuture<Void> all = CompletableFuture.allOf(future1, future2, future3);
-    	    all.whenCompleteAsync((s, e) -> LOGGER.info("Resultado all: {}"+ s), executor);
+    	
+    	//USANDO allOf
+    	/* CompletableFuture<Void> all = CompletableFuture.allOf(future1, future2, future3);
+    	    all.whenCompleteAsync((s, e) -> LOGGER.info("Resultado all: {}"+ s), executor);*/
+    	    
+    	    
+    	//USANDO anyOf
+	    CompletableFuture<Object> all = CompletableFuture.anyOf(future1, future2, future3);
+	    all.whenCompleteAsync((s, e) -> LOGGER.info("Resultado any: {}"+ s), executor);
 	}
 		
 	public static void main(String[] args) {
