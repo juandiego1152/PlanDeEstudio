@@ -10,7 +10,6 @@ public class CompletableFuture26 {
 	private static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	private static ExecutorService executor = Executors.newCachedThreadPool();
 	
-    // runAfterEither
     CompletableFuture<Void> future1 = CompletableFuture.runAsync(() -> {
         LOGGER.info("Comenzando future1 con runAfterEither...");
         Sleep.sleepSeconds(3);
@@ -24,8 +23,7 @@ public class CompletableFuture26 {
     }, executor);
     
     
-    public void llamarMetodo(){    
-    	
+    public void llamarMetodo(){ 
     	future1.runAfterEitherAsync(future2, () -> LOGGER.info("En el runAfterEither, primero terminado.")
                 , executor);
 	}
