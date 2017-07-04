@@ -12,16 +12,16 @@ public class CompletableFuture25 {
 	
 	  // acceptEither
     CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> {
-        LOGGER.info("Comenzando future1 for acceptEither...");
+        LOGGER.info("Comenzando future1 con acceptEither...");
         Sleep.sleepSeconds(3);
-        LOGGER.info("Terminado future1 for acceptEither!");
+        LOGGER.info("Terminado future1 con acceptEither!");
         return "Segundo";
     }, executor);
 
     CompletableFuture<String> future2 = CompletableFuture.supplyAsync(() -> {
-        LOGGER.info("Comenzando future2 for acceptEither...");
+        LOGGER.info("Comenzando future2 con acceptEither...");
         Sleep.sleepSeconds(1);
-        LOGGER.info("Terminado future2 for acceptEither!");
+        LOGGER.info("Terminado future2 con acceptEither!");
         return "Primero";
     }, executor);
 
