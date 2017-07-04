@@ -4,7 +4,7 @@ import java.util.concurrent.CompletableFuture;
 import org.junit.Test;
 import junit.framework.TestCase;
 
-public class CompletableFuture3 extends TestCase {
+public class CompletableFuture3_completedFuture extends TestCase {
 
 	@Test
 	public void test_completed_future() throws Exception {

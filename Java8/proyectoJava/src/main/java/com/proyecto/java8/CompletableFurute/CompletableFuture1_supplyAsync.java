@@ -4,7 +4,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class CompletableFuture1 {
+public class CompletableFuture1_supplyAsync {
 	
 	CompletableFuture<Integer> futureCount = CompletableFuture.supplyAsync(
 		() -> {
@@ -16,7 +16,7 @@ public class CompletableFuture1 {
 	);
 	
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
-		CompletableFuture1 completable = new CompletableFuture1();
+		CompletableFuture1_supplyAsync completable = new CompletableFuture1_supplyAsync();
 		completable.mensaje() ;		
 	}
 	

@@ -10,7 +10,7 @@ public class Sleep {
 			while (x < finalx) {
 				System.out.println(x);
 				Thread.sleep(1000);
-				x = x + 1000;				 
+				x = x + 1000;			 
 			}		
 		}catch(InterruptedException e){	}		
 	}

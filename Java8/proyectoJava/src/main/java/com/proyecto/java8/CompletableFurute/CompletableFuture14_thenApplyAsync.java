@@ -7,14 +7,14 @@ import java.util.concurrent.Executors;
 import java.util.logging.*;
 
 
-public class CompletableFuture14 {
+public class CompletableFuture14_thenApplyAsync {
 	
 	private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 	
 	private static ExecutorService executor = Executors.newCachedThreadPool();
 	
 	public static void main(String[] args) throws InterruptedException, ExecutionException {	        
-		CompletableFuture14 app = new CompletableFuture14();
+		CompletableFuture14_thenApplyAsync app = new CompletableFuture14_thenApplyAsync();
 		app.llamarMetodos();		
     } 
 	

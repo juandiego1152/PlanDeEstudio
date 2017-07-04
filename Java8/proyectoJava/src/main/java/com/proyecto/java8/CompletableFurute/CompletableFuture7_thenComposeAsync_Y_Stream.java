@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 
 import org.junit.Test;
 
-public class CompletableFuture7 {
+public class CompletableFuture7_thenComposeAsync_Y_Stream {
 
 	@Test
 	public void test() {
@@ -26,8 +26,7 @@ public class CompletableFuture7 {
 
 	private static ExecutorService service = Executors.newCachedThreadPool();
 	
-	
-	
+		
 	@Test
 	public void test_then_compose() throws Exception {
 
@@ -46,9 +45,9 @@ public class CompletableFuture7 {
 	            CompletableFuture.supplyAsync(() -> numerosx.stream().mapToInt(Integer::intValue).sum());
 
 
-	  CompletableFuture<Integer> summedMultiples = obtenerNumeros.thenComposeAsync(suma, service);
+	  CompletableFuture<Integer> resultado = obtenerNumeros.thenComposeAsync(suma, service);
 
-	  assertEquals(summedMultiples.get(), new Integer(715));
+	  assertEquals(resultado.get(), new Integer(715));
 	  }
 
 	

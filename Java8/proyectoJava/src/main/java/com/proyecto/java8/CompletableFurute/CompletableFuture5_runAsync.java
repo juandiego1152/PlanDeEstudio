@@ -8,26 +8,24 @@ import java.util.concurrent.Executors;
 
 import org.junit.Test;
 
-public class CompletableFuture5 {
+public class CompletableFuture5_runAsync {
 
 	@Test
 	public void test() {
-		//fail("Not yet implemented");
+		
 	}
 
 	private static ExecutorService service = Executors.newCachedThreadPool();
 	
 	@Test
     public void test_run_async(){
-        CompletableFuture<Void> runAsync = CompletableFuture.runAsync(() -> System.out.println("running async task"), service);
-        //utility testing method
-        pauseSeconds(3);       
+        CompletableFuture<Void> runAsync = CompletableFuture.runAsync(() -> System.out.println("Corriendo tarea Async"), service);
+        pausarSegundos(3);       
         assertEquals(runAsync.isDone(), true);	      
     }
 	 
-    private void pauseSeconds(int i) {
+    private void pausarSegundos(int i) {
     	try{
-			//Thread.sleep(i * 1000);
     		int finalx = i * 1000;
     		int x = 0;
     		while (x < finalx) {

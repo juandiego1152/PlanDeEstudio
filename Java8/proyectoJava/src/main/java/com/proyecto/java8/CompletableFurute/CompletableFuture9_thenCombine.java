@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 
 import org.junit.Test;
 
-public class CompletableFuture9 {
+public class CompletableFuture9_thenCombine {
 
 	@Test
 	public void test() {
@@ -16,14 +16,14 @@ public class CompletableFuture9 {
 	}
 	
 	@Test
-	public void test_then_combine_with_one_supplied_value() throws Exception {
-	 CompletableFuture<String> completableAsincrono = CompletableFuture.supplyAsync(tareaSimulada("calculated value"));
-	 CompletableFuture<String> CompletableConElValor = CompletableFuture.completedFuture("known value");
+	public void completableCombine() throws Exception {
+	 CompletableFuture<String> completableAsincrono = CompletableFuture.supplyAsync(tareaSimulada("valor calculado"));
+	 CompletableFuture<String> CompletableConElValor = CompletableFuture.completedFuture("valor conocido");
 	
-	 BinaryOperator<String> resultadoCalculo = (f, s) -> "taking a " + f + " then adding a " + s;
+	 BinaryOperator<String> resultadoCalculo = (f, s) -> "tomando un " + f + " y añadiendo un " + s;
 	 CompletableFuture<String> combined = completableAsincrono.thenCombine(CompletableConElValor, resultadoCalculo);
 	
-	 assertEquals(combined.get(),"taking a calculated value then adding a known value");
+	 assertEquals(combined.get(),"tomando un valor calculado y añadiendo un valor conocido");
 	}
 
 

@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 
 import org.junit.Test;
 
-public class CompletableFuture6 {
+public class CompletableFuture6_supplyAsync {
 
 	//private static ExecutorService service = Executors.newCachedThreadPool();
 
@@ -20,11 +20,11 @@ public class CompletableFuture6 {
 
 	@Test
     public void test_supply_async() throws Exception {
-        CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> simulatedTask(1, "Final Result"));
+        CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> tareaSimulada(1, "Final Result"));
         assertEquals(completableFuture.get(), "Término");
     }
 
-	private String simulatedTask(int i, String string) {
+	private String tareaSimulada(int i, String string) {
 		String finalx = "Término";
 		return finalx;
 	}

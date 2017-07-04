@@ -8,7 +8,7 @@ import java.util.concurrent.CompletableFuture;
 
 import org.junit.Test;
 
-public class CompletableFuture10 {
+public class CompletableFuture10_runAfterBothAsync {
 
 	@Test
 	public void test() {

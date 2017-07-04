@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 
 import org.junit.Test;
 
-public class CompletableFuture13 {
+public class CompletableFuture13_thenCombineAsync {
 
 	@Test
 	public void test() {

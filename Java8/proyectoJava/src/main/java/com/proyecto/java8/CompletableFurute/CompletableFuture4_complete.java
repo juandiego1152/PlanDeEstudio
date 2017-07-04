@@ -9,7 +9,7 @@ import java.util.concurrent.Future;
 
 import org.junit.Test;
 
-public class CompletableFuture4 {
+public class CompletableFuture4_complete {
 
 	@Test
 	public void test() throws InterruptedException, ExecutionException {
@@ -19,8 +19,7 @@ public class CompletableFuture4 {
 	}			
 	
 	public Future<String> calculateAsync() throws InterruptedException {
-	    CompletableFuture<String> completableFuture = new CompletableFuture<>();
-	 
+	    CompletableFuture<String> completableFuture = new CompletableFuture<>();	 
 	    Executors.newCachedThreadPool().submit(() -> {
 	        Thread.sleep(500);
 	        completableFuture.complete("Hello");

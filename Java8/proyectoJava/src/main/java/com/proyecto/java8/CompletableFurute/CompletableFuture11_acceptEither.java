@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 
 import org.junit.Test;
 
-public class CompletableFuture11 {
+public class CompletableFuture11_acceptEither {
 
 	@Test
 	public void test() {
@@ -18,20 +18,19 @@ public class CompletableFuture11 {
 
 
 	@Test
-	public void test_accept_either_async_nested_finishes_first() throws Exception {
+	public void completableAcceptEither() throws Exception {
 	List<String> results = new ArrayList<String>();
 		
-	 CompletableFuture<String> callingCompletable = CompletableFuture.supplyAsync(tareaSimulada("calling"));
-	 CompletableFuture<String> nestedCompletable = CompletableFuture.supplyAsync(tareaSimulada("nested"));
-	 //CompletableFuture<String> nestedCompletable = CompletableFuture.completedFuture("nested");
+	 CompletableFuture<String> tarea1 = CompletableFuture.supplyAsync(tareaSimulada("tarea 1"));
+	 CompletableFuture<String> tarea2 = CompletableFuture.supplyAsync(tareaSimulada("tarea 2"));
 	
-	 CompletableFuture<Void> collector = callingCompletable.acceptEither(nestedCompletable, results::add);
+	 CompletableFuture<Void> collector = tarea1.acceptEither(tarea2, results::add);
 	
 	 pauseSeconds(2);
 	 assertEquals(collector.isDone(), true);
 	 assertEquals(results.size(), 1);
-	 assertEquals(results.contains("calling"), true);
-	 assertEquals(results.contains("nested"), false);
+	 assertEquals(results.contains("tarea 1"), true);
+	 assertEquals(results.contains("tarea 2"), false);
 	}
 	
 	private Supplier<String> tareaSimulada(String string) {

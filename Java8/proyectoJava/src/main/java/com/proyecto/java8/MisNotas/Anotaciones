@@ -273,14 +273,76 @@ LOGGER
 COMPLETABLE FUTURE 
 
 
+	 ----------------- run y supply (y runAsync y supplyAsync)	
+	
+	Este solo ejecuta una operacion.
+	CompletableFuture<Void> runAsync = CompletableFuture.runAsync(() -> System.out.println("running async task"), service);
+	
+	Este ejecuta una operacion pero tiene un valor de retorno.
+	CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(() -> tareaSimulada(1, "Final Result"));
+	
+	
+	
+	 ----------------- thenApply: 
+	para transformar futuros. La idea es pasarle una función lambda que transforme el resultado del primero.
+	
+	
+	 ----------------- thenAccept y thenRun
+	muy similares al whenComplete, ejecutaran el lambda una vez se complete el futuro. 
+	El primero recibe un resultado, y el segundo no. Son equivalentes al supplyAsync y runAsync respectivamente.
+	
+	CompletableFuture<Void> future = nombreCompletableParaEximanar.thenAccept(s -> System.out.println("Valor de retorno: " + s));
+	
+	 ----------------- completedFuture
+	
+	String expectedValue = "the expected value";
+	CompletableFuture<String> alreadyCompleted = CompletableFuture.completedFuture(expectedValue);
+	
+			
+	COMBINE
+	
+	En este caso, en lugar de una cadena de futuros, espera a que terminen dos futuros, para luego hacer algo. 
+	En este caso la lambda tendrá dos parámetros, que son el resultado de cada uno de los dos futuros:
+	
+	 ----------------- thenCombineAsync
+	
+	CompletableFuture<String> primeraTarea = CompletableFuture.supplyAsync(tareaSimulada(3, "Combinar"));
+	CompletableFuture<String> segundaTarea = CompletableFuture.supplyAsync(tareaSimulada(2, "todas las tareas"));
+	CompletableFuture<String> tareasCombinadas = primeraTarea.thenCombineAsync(segundaTarea, (f, s) -> f + " " + s);	
+	
+	CompletableFuture<String> finalStage = stage7.thenCombineAsync(stage8,(s1,s2)-> s1+s2);
+	
+	
+	----------------- thenCombine
+	
+	CompletableFuture<String> completableAsincrono = CompletableFuture.supplyAsync(tareaSimulada("valor calculado"));
+	CompletableFuture<String> CompletableConElValor = CompletableFuture.completedFuture("valor conocido");
+	CompletableFuture<String> combined = completableAsincrono.thenCombine(CompletableConElValor, resultadoCalculo);
+	
+	 ----------------- thenComposeAsync
+	
+	CompletableFuture<Integer> resultado = obtenerNumeros.thenComposeAsync(suma, service);
 			
 			
+	runAfterBothAsync	
+	
+	thenAcceptBoth y runAfterBoth: Muy similares al ‘thenCombine’, excepto que no generan un nuevo futuro, 
+	simplemente ejecutan la lambda cuando los dos futuros terminen. Es como un ‘whenComplete‘ pero esperando dos futuros:
+	
+	CompletableFuture<Void> finisher = "futuro1".runAfterBothAsync("futuro2",() -> results. add(results.get(0)+ "&"+results.get(1)));	
 			
-			
-			
-			
-			
-			
-			
-			
+	acceptEither	
+		
+	acceptEither y runAfterEither: En algunos casos en que tengamos dos futuros nos interesará hacer algo cuando uno 
+	de los dos termine, el primero que lo haga. Para eso están estos dos métodos.	
+	
+	CompletableFuture<Void> collector = tarea1.acceptEither(tarea2, results::add);		
+	CompletableFuture<Void> finisher = run1.runAfterEitherAsync(run2,() -> results.add(results.get(0).toUpperCase()));
+	
+	
+	
+	
+	
+	
+	Sleep.sleepSeconds
 			
