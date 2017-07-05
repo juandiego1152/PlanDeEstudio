@@ -9,7 +9,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-public class CompetableFuture28_Ejemplos {
+public class CompletableFuture28_Ejemplos {
 
 		private static final Logger LOG = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 		private static final ExecutorService execut = Executors.newCachedThreadPool();
@@ -21,7 +21,7 @@ public class CompetableFuture28_Ejemplos {
 		}
 		
 		public static void main(String[] args) {
-			CompetableFuture28_Ejemplos app = new CompetableFuture28_Ejemplos();
+			CompletableFuture28_Ejemplos app = new CompletableFuture28_Ejemplos();
 			app.completableFuture();
 		}
 		
