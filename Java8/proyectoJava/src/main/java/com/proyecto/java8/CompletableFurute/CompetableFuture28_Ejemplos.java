@@ -5,10 +5,19 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
+import junit.framework.Assert;
+
+import org.junit.Test;
+
 public class CompetableFuture28_Ejemplos {
 
 		private static final Logger LOG = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 		private static final ExecutorService execut = Executors.newCachedThreadPool();
+		
+		@Test
+		public void test(){
+			Assert.assertEquals(conventir("Juan Diego Londoño"), "JUAN DIEGO LONDOÑO");
+		}
 		
 		public static void main(String[] args) {
 			CompetableFuture28_Ejemplos app = new CompetableFuture28_Ejemplos();
@@ -18,6 +27,8 @@ public class CompetableFuture28_Ejemplos {
 		public void completableFuture(){
 			CompletableFuture.supplyAsync(this::crearNombre,execut).thenApply(this::conventir).thenAccept(this::resultadoFinal);
 		}
+		
+		
 		public String crearNombre(){
 			String nombre = "Juan Diego Londoño";
 			Sleep.sleepSeconds(2);
