@@ -16,6 +16,7 @@ public class CompetableFuture28_Ejemplos {
 		
 		@Test
 		public void test(){
+			Assert.assertEquals(crearNombre(), "Juan Diego Londoño");
 			Assert.assertEquals(conventir("Juan Diego Londoño"), "JUAN DIEGO LONDOÑO");
 		}
 		
