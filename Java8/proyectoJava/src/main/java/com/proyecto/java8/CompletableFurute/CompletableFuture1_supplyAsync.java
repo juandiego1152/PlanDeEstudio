@@ -2,7 +2,6 @@ package com.proyecto.java8.CompletableFurute;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class CompletableFuture1_supplyAsync {
 	
