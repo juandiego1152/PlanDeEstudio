@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="CarritoDeCompras Netbeans/src/main/java"/>
+	<classpathentry kind="src" path="proyectoJava/src/main/java"/>
+	<classpathentry kind="src" path="proyectoJava/src/test/java"/>
+	<classpathentry kind="src" path="SistemaHotelJava8/src/main/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="proyectoJava/target/test-classes"/>
+</classpath>
