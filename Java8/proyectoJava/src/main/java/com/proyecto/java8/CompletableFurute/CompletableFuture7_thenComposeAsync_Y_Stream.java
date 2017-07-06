@@ -35,10 +35,8 @@ public class CompletableFuture7_thenComposeAsync_Y_Stream {
 
 
 	 Supplier<List<Integer>> numeros = obtenerPrimerosNumeros.apply(13);
-
 	 
-	
-	 CompletableFuture<List<Integer>> obtenerNumeros = CompletableFuture.supplyAsync(numeros, service);
+		 CompletableFuture<List<Integer>> obtenerNumeros = CompletableFuture.supplyAsync(numeros, service);
 
 
 	 Function<List<Integer>, CompletableFuture<Integer>> suma = numerosx ->

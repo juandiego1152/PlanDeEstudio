@@ -1,15 +1,13 @@
 package com.proyecto.java8.CompletableFurute;
 
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
-import javax.security.auth.kerberos.KerberosKey;
-import javax.security.auth.x500.X500Principal;
 
 
 public class CompletableFuture30_Ejemplos {
@@ -20,22 +18,30 @@ public class CompletableFuture30_Ejemplos {
 	List<Double> lista1 = new ArrayList<Double>();
 	List<Double> lista2 = new ArrayList<Double>();
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException, ExecutionException {
 		CompletableFuture30_Ejemplos app = new CompletableFuture30_Ejemplos();
 		app.llamarMetodo();
 		
 	}
 	
-	public void llamarMetodo(){
+	public void llamarMetodo() throws InterruptedException, ExecutionException{
 		CompletableFuture<Double> primeraLista = CompletableFuture.supplyAsync(() -> llenarLista1(), execut)
 				.thenApply(s -> sumarLista(s));
 		CompletableFuture<List<Double>> segundaLista = CompletableFuture.supplyAsync(() -> llenarLista2(), execut);
 		
 		CompletableFuture<Double> sumaSegundaLista = segundaLista.thenApply(s -> sumarLista(s));
 		
-		CompletableFuture<Void> restultado = primeraLista.thenCombineAsync(sumaSegundaLista, (x,y) -> x + y).thenAccept(s ->LOG.info("resultado: " + s));
+		//CompletableFuture<Void> restultado = primeraLista.thenCombineAsync(sumaSegundaLista, (x,y) -> x + y).thenAccept(s ->LOG.info("resultado: " + s));
 		
-		//LOG.info("Resultado " + restultado.get());
+		/*Como no estamos usando la variable resultado ya que esta terminando la ejecucion de la linea
+		con el thenApply entonces no la inicializare.*/
+		
+		primeraLista.thenCombineAsync(sumaSegundaLista, (x,y) -> x + y).thenAccept(s ->LOG.info("resultado: " + s));
+		
+		/* OTRA FORMA DE LLAMAR EL RESULTADO.
+		 
+		CompletableFuture<Double> restultado = primeraLista.thenCombineAsync(sumaSegundaLista, (x,y) -> x + y);
+		LOG.info("Resultado " + restultado.get());*/
 						
 	}
 	
