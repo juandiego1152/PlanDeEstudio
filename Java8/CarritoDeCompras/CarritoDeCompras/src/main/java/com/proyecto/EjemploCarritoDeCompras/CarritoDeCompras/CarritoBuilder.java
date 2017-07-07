@@ -39,6 +39,7 @@ public class CarritoBuilder {
             precios.add(value);
         }
         return this;
+        
     }
     
     public boolean detectarError() {
