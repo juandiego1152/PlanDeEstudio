@@ -33,4 +33,21 @@ public class CarritoBuilder {
         precios.add(nuevoValor);
         return this;
     }
+    
+    public CarritoBuilder addMultiple(Integer size, int value){
+        for(int i = 0; i < size; i++){
+            precios.add(value);
+        }
+        return this;
+    }
+    
+    public boolean detectarError() {
+    	boolean negativeFind = false;	
+    	for (Integer precio : precios) {	
+		     if (precio < 0) {	
+		         negativeFind = true;
+		     }
+		  }  
+	  return negativeFind;
+	}
 }

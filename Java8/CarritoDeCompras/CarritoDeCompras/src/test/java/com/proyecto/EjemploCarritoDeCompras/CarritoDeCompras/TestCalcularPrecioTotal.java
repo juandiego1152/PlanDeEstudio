@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import junit.framework.Assert;
 
-public class CarritoDeCompraTest2 {
+public class TestCalcularPrecioTotal {
 
 	
 	@Test

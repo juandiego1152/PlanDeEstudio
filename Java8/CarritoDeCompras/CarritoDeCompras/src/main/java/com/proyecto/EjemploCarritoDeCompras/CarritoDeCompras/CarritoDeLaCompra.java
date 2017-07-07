@@ -35,13 +35,15 @@ public class CarritoDeLaCompra {
     
     //En esta usamos expresion lambda para convertir los valores a enteros.
     public int calcularPrecioTotalLambda() {        	
-	    int precioTotal = this.precios.stream().mapToInt(precio -> precio.intValue()).sum();      	
+	    int precioTotal = this.precios.stream().mapToInt(precio -> precio.intValue()).sum();
+	    LOGGER.info("Precio total Lambda : " + precioTotal);    
         return precioTotal;
     }
     
     //En esta usamos referencia a metodo para convertir los valores a enteros.
     public int calcularPrecioTotalRefMethod() {
         int precioTotal = this.precios.stream().mapToInt(Integer::intValue).sum();
+        LOGGER.info("Precio total Referencia: " + precioTotal);    
         return precioTotal;
     }
     
@@ -59,6 +61,26 @@ public class CarritoDeLaCompra {
         return descuentoTotal;
     }
     
+    public long calcularDescuentoTotalLambda(int cantidadConDescuento){
+        long descuentoTotal = 0;
+        Long numeroDeDescuentos  = this.precios.stream()
+                                               .filter(precio -> precio.intValue() >= cantidadConDescuento)
+                                               .count();
+        descuentoTotal = (cantidadConDescuento*5/100)*numeroDeDescuentos;
+        return descuentoTotal;
+    }
+    
+    public boolean detectarError() {
+    	boolean negativeFind = false;	
+    	for (Integer precio : precios) {	
+		     if (precio < 0) {	
+		         negativeFind = true;
+		     }
+		  }  
+	  return negativeFind;
+	}
+    
+    
     public static void main(String[] args) {
     	BasicConfigurator.configure();
         LOGGER.trace("Log level trace");
@@ -67,8 +89,6 @@ public class CarritoDeLaCompra {
         LOGGER.warn("Log level warn");
         LOGGER.error("Log level error");
         LOGGER.fatal("Log level fatal");
-    }
-    
-    
+    }        
     
 }

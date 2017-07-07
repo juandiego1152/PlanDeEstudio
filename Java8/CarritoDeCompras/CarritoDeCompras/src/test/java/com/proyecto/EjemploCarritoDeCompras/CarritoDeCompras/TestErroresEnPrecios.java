@@ -1,22 +1,21 @@
 package com.proyecto.EjemploCarritoDeCompras.CarritoDeCompras;
 
-
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class CarritoDeCompraTest3 {
+public class TestErroresEnPrecios {
 
-	@Test
-	public void test() {
 		
-	}
-
 	@Test
-	public void shouldCalculateTotalDiscount() throws Exception {
+	public void shouldDetectErrorAnThrowRuntimeExceptionWhenAPriceIsNegative(){
+	 
 		CarritoBuilder builder = new CarritoBuilder(20,100);
+		builder.add(-1);
+		builder.addMultiple(10,-100);
 		CarritoDeLaCompra carritoDeLaCompra = builder.build();
-		assertEquals(100, carritoDeLaCompra.calcularDescuentoTotal(100));
-
+		
+		assertTrue(carritoDeLaCompra.detectarError());
+	 
 	}
 }
