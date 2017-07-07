@@ -74,7 +74,63 @@ hacer suma de toda una lista
 
 	lista.stream().reduce(Integer::sum);
 	
-		
+	
+A stream provides a fluent API for transforming values and performing some action on the results. Stream operations 
+are either "intermediate" or "terminal".
+
+Intermediate - An intermediate operation keeps the stream open and allows further operations to follow. 
+The filter and map methods in the example above are intermediate operations. The return type of these
+methods is Stream; they return the current stream to allow chaining of more operations.
+Terminal - A terminal operation must be the final operation invoked on a stream. Once a terminal 
+operation is invoked, the stream is "consumed" and is no longer usable. The sum method in the example
+above is a terminal operation.
+
+	
+int sumOfWeights = blocks.stream().filter(b -> b.getColor() == RED)
+                                  .mapToInt(b -> b.getWeight())
+                                  .sum();	
+                                  
+List<String> strings = Arrays.asList("a", "b", "c");
+strings.stream()                    // Stream<String>
+       .mapToInt(String::length)    // IntStream
+       .longs()                     // LongStream
+       .mapToDouble(x -> x / 10.0)  // DoubleStream
+       .boxed()                     // Stream<Double>
+       .mapToLong(x -> 1L)          // LongStream
+       .mapToObj(x -> "")           // Stream<String>
+       ...
+          
+List<String> strings = values.stream()
+                             .filter(...)
+                             .map(...)
+                             .collect(Collectors.toList());
+                                                     
+Intermediate operations:
+
+    filter 1 - Exclude all elements that don't match a Predicate.
+    map 1 2 3 4 - Perform a one-to-one transformation of elements using a Function.
+    flatMap 1 2 3 4 - Transform each element into zero or more elements by way of another Stream.
+    peek 1 - Perform some action on each element as it is encountered. Primarily useful for debugging.
+    distinct 1 - Exclude all duplicate elements according to their .equals behavior. This is a stateful operation.
+    sorted 1 2 - Ensure that stream elements in subsequent operations are encountered according to the order imposed by a Comparator. This is a stateful operation.
+    limit 1 - Ensure that subsequent operations only see up to a maximum number of elements. This is a stateful, short-circuiting operation.
+    skip 1 - Ensure that subsequent operations do not see the first n elements. This is a stateful operation.
+
+Terminal operations:
+
+    forEach 1 - Perform some action for each element in the stream.
+    toArray 1 2 - Dump the elements in the stream to an array.
+    reduce 1 2 3 - Combine the stream elements into one using a BinaryOperator.
+    collect 1 2 - Dump the elements in the stream into some container, such as a Collection or Map.
+    min 1 - Find the minimum element of the stream according to a Comparator.
+    max 1 - Find the maximum element of the stream according to a Comparator.
+    count 1 - Find the number of elements in the stream.
+    anyMatch 1 - Find out whether at least one of the elements in the stream matches a Predicate. This is a short-circuiting operation.
+    allMatch 1 - Find out whether every element in the stream matches a Predicate. This is a short-circuiting operation.
+    noneMatch 1 - Find out whether zero elements in the stream match a Predicate. This is a short-circuiting operation.
+    findFirst 1 - Find the first element in the stream. This is a short-circuiting operation.
+    findAny 1 - Find any element in the stream, which may be cheaper than findFirst for some streams. This is a short-circuiting operation.
+
 		
 STREAM PARALELO
 
@@ -453,4 +509,223 @@ COMPLETABLE FUTURE
 	
 	
 	Sleep.sleepSeconds
+	
+	
+	
+	
+Method reference 	  	Equivalent lambda expression
+String::valueOf 		x -> String.valueOf(x)
+Object::toString 		x -> x.toString()
+x::toString 		() -> x.toString()
+ArrayList::new 		() -> new ArrayList<>()
 			
+		
+
+Function<T, R> - take a T as input, return an R as ouput
+Predicate<T> - take a T as input, return a boolean as output
+Consumer<T> - take a T as input, perform some action and don't return anything
+Supplier<T> - with nothing as input, return a T
+BinaryOperator<T> - take two T's as input, return one T as output, useful for "reduce" operations
+			
+			
+			
+			
+			
+MAS DOCUMENTACION 
+
+
+------Predicates
+
+Predicates are boolean-valued functions of one argument. The interface contains various default methods for 
+composing predicates to complex logical terms (and, or, negate)
+
+Predicate<String> predicate = (s) -> s.length() > 0;
+
+predicate.test("foo");              // true
+predicate.negate().test("foo");     // false
+
+Predicate<Boolean> nonNull = Objects::nonNull;
+Predicate<Boolean> isNull = Objects::isNull;
+
+Predicate<String> isEmpty = String::isEmpty;
+Predicate<String> isNotEmpty = isEmpty.negate();
+
+
+------Functions
+
+Functions accept one argument and produce a result. Default methods can be used to chain 
+multiple functions together (compose, andThen).
+
+Function<String, Integer> toInteger = Integer::valueOf;
+Function<String, String> backToString = toInteger.andThen(String::valueOf);
+
+backToString.apply("123");     // "123"
+
+
+------Suppliers
+
+Suppliers produce a result of a given generic type. Unlike Functions, Suppliers don't accept arguments.
+
+Supplier<Person> personSupplier = Person::new;
+personSupplier.get();   // new Person
+
+------Consumers
+
+Consumers represents operations to be performed on a single input argument.
+
+Consumer<Person> greeter = (p) -> System.out.println("Hello, " + p.firstName);
+greeter.accept(new Person("Luke", "Skywalker"));
+
+------Comparators
+
+Comparators are well known from older versions of Java. Java 8 adds various default methods to the interface.
+
+Comparator<Person> comparator = (p1, p2) -> p1.firstName.compareTo(p2.firstName);
+
+Person p1 = new Person("John", "Doe");
+Person p2 = new Person("Alice", "Wonderland");
+
+comparator.compare(p1, p2);             // > 0
+comparator.reversed().compare(p1, p2);  // < 0
+
+------Optionals
+
+Optionals are not functional interfaces, instead it's a nifty utility to prevent NullPointerException. It's an important concept for the next section, so let's have a quick look at how Optionals work.
+
+Optional is a simple container for a value which may be null or non-null. Think of a method which may return a non-null result but sometimes return nothing. Instead of returning null you return an Optional in Java 8.
+
+Optional<String> optional = Optional.of("bam");
+
+optional.isPresent();           // true
+optional.get();                 // "bam"
+optional.orElse("fallback");    // "bam"
+
+optional.ifPresent((s) -> System.out.println(s.charAt(0)));     // "b"
+
+
+
+------MAS DE STREAM
+
+
+------Streams
+
+A java.util.Stream represents a sequence of elements on which one or more operations can be performed. 
+Stream operations are either intermediate or terminal. While terminal operations return a result of a 
+certain type, intermediate operations return the stream itself so you can chain multiple method calls
+ in a row. Streams are created on a source, e.g. a java.util.Collection like lists or sets (maps are
+  not supported). Stream operations can either be executed sequential or parallel.
+
+Let's first look how sequential streams work. First we create a sample source in form of a list of strings:
+
+List<String> stringCollection = new ArrayList<>();
+stringCollection.add("ddd2");
+stringCollection.add("aaa2");
+stringCollection.add("bbb1");
+stringCollection.add("aaa1");
+stringCollection.add("bbb3");
+stringCollection.add("ccc");
+stringCollection.add("bbb2");
+stringCollection.add("ddd1");
+
+Collections in Java 8 are extended so you can simply create streams either by calling Collection.stream()
+ or Collection.parallelStream(). The following sections explain the most common stream operations.
+Filter
+
+Filter accepts a predicate to filter all elements of the stream. This operation is intermediate which 
+enables us to call another stream operation (forEach) on the result. ForEach accepts a consumer to be
+executed for each element in the filtered stream. ForEach is a terminal operation. It's void, so we
+cannot call another stream operation.
+
+stringCollection
+    .stream()
+    .filter((s) -> s.startsWith("a"))
+    .forEach(System.out::println);
+
+// "aaa2", "aaa1"
+
+Sorted
+
+Sorted is an intermediate operation which returns a sorted view of the stream. The elements are sorted 
+in natural order unless you pass a custom Comparator.
+
+stringCollection
+    .stream()
+    .sorted()
+    .filter((s) -> s.startsWith("a"))
+    .forEach(System.out::println);
+
+// "aaa1", "aaa2"
+
+Keep in mind that sorted does only create a sorted view of the stream without manipulating the 
+ordering of the backed collection. The ordering of stringCollection is untouched:
+
+System.out.println(stringCollection);
+// ddd2, aaa2, bbb1, aaa1, bbb3, ccc, bbb2, ddd1
+
+Map
+
+The intermediate operation map converts each element into another object via the given function. 
+The following example converts each string into an upper-cased string. But you can also use map
+ to transform each object into another type. The generic type of the resulting stream depends
+  on the generic type of the function you pass to map.
+
+stringCollection
+    .stream()
+    .map(String::toUpperCase)
+    .sorted((a, b) -> b.compareTo(a))
+    .forEach(System.out::println);
+
+// "DDD2", "DDD1", "CCC", "BBB3", "BBB2", "AAA2", "AAA1"
+
+Match
+
+Various matching operations can be used to check whether a certain predicate matches the stream.
+All of those operations are terminal and return a boolean result.
+
+boolean anyStartsWithA =
+    stringCollection
+        .stream()
+        .anyMatch((s) -> s.startsWith("a"));
+
+System.out.println(anyStartsWithA);      // true
+
+boolean allStartsWithA =
+    stringCollection
+        .stream()
+        .allMatch((s) -> s.startsWith("a"));
+
+System.out.println(allStartsWithA);      // false
+
+boolean noneStartsWithZ =
+    stringCollection
+        .stream()
+        .noneMatch((s) -> s.startsWith("z"));
+
+System.out.println(noneStartsWithZ);      // true
+
+Count
+
+Count is a terminal operation returning the number of elements in the stream as a long.
+
+long startsWithB =
+    stringCollection
+        .stream()
+        .filter((s) -> s.startsWith("b"))
+        .count();
+
+System.out.println(startsWithB);    // 3
+
+Reduce
+
+This terminal operation performs a reduction on the elements of the stream with the given function.
+The result is an Optional holding the reduced value.
+
+Optional<String> reduced =
+    stringCollection
+        .stream()
+        .sorted()
+        .reduce((s1, s2) -> s1 + "#" + s2);
+
+reduced.ifPresent(System.out::println);
+// "aaa1#aaa2#bbb1#bbb2#bbb3#ccc#ddd1#ddd2"
+
