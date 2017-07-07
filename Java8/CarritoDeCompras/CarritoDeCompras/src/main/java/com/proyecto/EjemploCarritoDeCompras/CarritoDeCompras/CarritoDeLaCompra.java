@@ -98,6 +98,23 @@ public class CarritoDeLaCompra {
                                    .isPresent();
     }
     
+    
+    public boolean detectarErrorAnyMatchParallel() {
+        return this.precios.parallelStream().anyMatch(precio -> precio.intValue() < 0);
+    }
+
+    public boolean detectarErrorFindAnyParallel() {
+        return this.precios.parallelStream().filter(precio -> precio.intValue() < 0)
+                                            .findAny()
+                                            .isPresent();
+    }
+
+    public boolean detectarErrorFindFirstParallel() {
+        return this.precios.parallelStream().filter(precio -> precio.intValue() < 0)
+                                            .findFirst()
+                                            .isPresent();
+    }
+    
     public static void main(String[] args) {
     	BasicConfigurator.configure();
         LOGGER.trace("Log level trace");
