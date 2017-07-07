@@ -21,12 +21,21 @@ public class TestErroresEnPrecios {
 	
 	@Test
 	public void detectarErrorCuandoPrecioNegativoAnyMatch(){
-
 	     CarritoBuilder builder = new CarritoBuilder(20,100);
 	     builder.add(-1);
 	     builder.addMultiple(10,-100);
 	     CarritoDeLaCompra carritoDeLaCompra = builder.build();
 	     assertTrue(carritoDeLaCompra.detectarErrorAnyMatch());
+	}
+	
+	@Test
+	public void detectarErrorCuandoPrecioNegativoFindAny(){
+
+	    CarritoBuilder builder = new CarritoBuilder(20,100);
+	    builder.add(-1);
+	    builder.addMultiple(10,-100);
+	    CarritoDeLaCompra carritoDeLaCompra = builder.build();
+	    assertTrue(carritoDeLaCompra.detectarErrorFindAny());
 
 	}
 }

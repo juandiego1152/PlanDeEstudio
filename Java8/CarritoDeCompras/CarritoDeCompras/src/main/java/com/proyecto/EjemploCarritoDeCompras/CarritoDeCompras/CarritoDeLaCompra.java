@@ -84,6 +84,19 @@ public class CarritoDeLaCompra {
         return this.precios.stream().anyMatch(precio -> precio.intValue() < 0);
     }
     
+   	/*En este ejemplo hacemos uso de los métodos findAny() e isPresent(). Es decir, findAny() 
+   	 * nos devuelve un Optional cuando se cumple la condición de filter(). Este Optional 
+   	 * tiene como método isPresent() el cual si encuentra una coincidencia devolverá true. 
+   	 * Hay que aclarar que esta forma recorre todo el stream.*/
+   	     
+    public boolean detectarErrorFindAny() {    
+    	//Con findAny busca en todo el stream y que se cumpla alguno.
+    	//con findFirst busca hasta que encuentre el primero.
+       return this.precios.stream().filter(precio -> precio.intValue() < 0)
+                                   //.findAny()  
+		   							.findFirst()
+                                   .isPresent();
+    }
     
     public static void main(String[] args) {
     	BasicConfigurator.configure();
